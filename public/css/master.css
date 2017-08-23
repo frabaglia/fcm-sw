@@ -1,0 +1,21 @@
+html, body {
+    font-family: 'Rubik', sans-serif;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.container h1 {
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+}
