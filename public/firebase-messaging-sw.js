@@ -17,11 +17,6 @@ this.addEventListener('install', function() {
   console.log('Installed service worker')
 })
 
-// this.addEventListener('push', function() {
-//   console.log('Service worker has recived a push notification!')
-//   self.registration.showNotification('Service worker has recived a push notification!')
-// })
-
 messaging.setBackgroundMessageHandler(function(payload) {
   console.log('[sw.js] Received background message ', payload)
   // Customize notification here
