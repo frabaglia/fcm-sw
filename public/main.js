@@ -1,5 +1,21 @@
 const messaging = firebase.messaging()
 
+/* Main */
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('start').addEventListener('click', start)
+})
+
+/* Functions */
+
+function start() {
+  if ('serviceWorker' in navigator && 'PushManager' in window) {
+    registerFCMPushSubscription()
+  } else {
+    console.log("You can't use ServiceWorker Push API.")
+  }
+}
+
 function sendFCMTokenToServer(currentToken) {
   console.log('Firebase token recived: ' + currentToken)
   fetch('token/' + currentToken).then(function(response) {
@@ -27,14 +43,3 @@ function registerFCMPushSubscription() {
       console.log('Unable to get permission to notify.', err);
     });
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-  if ('serviceWorker' in navigator && 'PushManager' in window) {
-    navigator.serviceWorker.register('sw.js')
-      .then(function(registration) {
-        registerFCMPushSubscription()
-      })
-  } else {
-    console.log("You can't use ServiceWorker Push API.")
-  }
-})
