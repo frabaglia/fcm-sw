@@ -1,6 +1,6 @@
-# 🐙 express-generator-template
+# 📡 web push notification client
 
-This module allows you to start using express with Node es-2015 and stage-0 features very quickly.
+This is an example about using [Push Notification API](https://developers.google.com/web/fundamentals/getting-started/codelabs/push-notifications/?hl=es) as a background service via Service Worker.
 
 It has some dev ops implemented on the npm package:
 
