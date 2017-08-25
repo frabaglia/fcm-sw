@@ -10,19 +10,10 @@
 <body>
   <h1>Maraton</h1>
   <button id="start">Start!</button>
+  <h3 id="current-status-tag">Current status: </h3>
+  <h3 id="current-status-value"></h3>
+    <h3 id="polling-status">Polling...</h3>
   <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyD5kTfMizzEukLFbZkth8i-PropUqgwB84",
-      authDomain: "upmaraton.firebaseapp.com",
-      databaseURL: "https://upmaraton.firebaseio.com",
-      projectId: "upmaraton",
-      storageBucket: "",
-      messagingSenderId: "456275715091"
-    }
-    firebase.initializeApp(config)
-  </script>
   <script type="text/javascript" src="main.js"></script>
 </body>
 

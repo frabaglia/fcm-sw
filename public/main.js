@@ -1,14 +1,34 @@
-const messaging = firebase.messaging()
+/* Initialize Firebase */
+var config = {
+  apiKey: "AIzaSyD5kTfMizzEukLFbZkth8i-PropUqgwB84",
+  authDomain: "upmaraton.firebaseapp.com",
+  databaseURL: "https://upmaraton.firebaseio.com",
+  projectId: "upmaraton",
+  storageBucket: "",
+  messagingSenderId: "456275715091"
+}
 
+firebase.initializeApp(config)
+
+const messaging = firebase.messaging()
+let start = document.getElementById('start')
+let pollingStatus = document.getElementById('polling-status')
+let currentStatusValue = document.getElementById('current-status-value')
 /* Main */
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('start').addEventListener('click', start)
+  start.addEventListener('click', startServiceWorker)
+  pollingStatus.style.display = 'none'
+  /* Init polling */
+  setInterval(function(){
+    pollingStatus.style.display = 'inline'
+    fetch('status').then(fetchStatus).then(setStatus)
+  },2000)
 })
 
 /* Functions */
 
-function start() {
+function startServiceWorker() {
   if ('serviceWorker' in navigator && 'PushManager' in window) {
     registerFCMPushSubscription()
   } else {
@@ -21,6 +41,15 @@ function sendFCMTokenToServer(currentToken) {
   fetch('token/' + currentToken).then(function(response) {
     console.log('Work done, FCM token registered on the server.')
   })
+}
+
+function fetchStatus(response) {
+  return response.json()
+}
+
+function setStatus(response) {
+  pollingStatus.style.display = 'none'
+  currentStatusValue.innerHTML = response.payload
 }
 
 function registerFCMPushSubscription() {

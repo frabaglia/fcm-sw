@@ -47,7 +47,10 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, '../public')))
 
 /* Main routing */
-app.use('/', routes)
+app.use('/', routes(app))
+
+/* Bussines rules */
+app.locals.currentTask = -1
 
 /* 404 handling */
 app.use((req, res, next) => {
